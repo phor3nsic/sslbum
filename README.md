@@ -3,7 +3,7 @@
 
 ## Run
 ```
-> go run sslbum.go example.com
+> go run sslbum.go hackerone.com
 
 █▀ █▀ █░░ █▄▄ █░█ █▀▄▀█
 ▄█ ▄█ █▄▄ █▄█ █▄█ █░▀░█
