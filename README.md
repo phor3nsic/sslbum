@@ -32,5 +32,5 @@ I███████████████████].
 Example:
 
 ```
-set SHODAN=YOU_API_KEY
+export SHODAN=YOU_API_KEY
 ```
