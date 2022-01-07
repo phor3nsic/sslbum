@@ -6,6 +6,7 @@
 ```
 > go get github.com/phor3nsic/sslbum
 ```
+
 ## Run
 ```
 > sslbum -d hackerone.com -k SHODANAPIKEY
