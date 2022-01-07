@@ -1,9 +1,10 @@
 # SSLBUM
-*search ip of targets in shodan API*
+*search ip of targets in shodan with ssl method!*
 
 ## Run
 ```
-> go run sslbum.go hackerone.com
+> go get github.com/phor3nsic/sslbum
+> sslbum -d hackerone.com -k SHODANAPIKEY
 
 █▀ █▀ █░░ █▄▄ █░█ █▀▄▀█
 ▄█ ▄█ █▄▄ █▄█ █▄█ █░▀░█
@@ -15,22 +16,11 @@ I███████████████████].
 
 		by @phor3nsic
 
-[!] Run: go run sslbum.go example.com
-[!] Need set enviroment SHODAN with API key
+[!] Run: sslbum -d example.com -k SHODANAPIKEY
 
 [-] Searching ...
 [+] Total found: 2
 104.16.99.52
 104.16.100.52
 
-```
-
-## Requirements
-
-**Need set enviroment with name SHODAN and the value**
-
-Example:
-
-```
-export SHODAN=YOU_API_KEY
 ```

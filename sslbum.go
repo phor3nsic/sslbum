@@ -2,12 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
+var domain string
+var silent bool
+var apiKey string
 var banner = `
 
 █▀ █▀ █░░ █▄▄ █░█ █▀▄▀█
@@ -20,8 +23,7 @@ I███████████████████].
 
 		by @phor3nsic
 
-[!] Run: go run sslbum.go example.com
-[!] Need set enviroment SHODAN with API key
+[!] Run: sslbum -d example.com -k SHODANAPIKEY
 `
 
 type Response struct {
@@ -43,7 +45,9 @@ func request(url string) {
 			return
 		}
 		concat := fmt.Sprint("[+] Total found: ", responseObj.Total)
-		fmt.Println(concat)
+		if silent != true {
+			fmt.Println(concat)
+		}
 		for i := 0; i < len(responseObj.Matches); i++ {
 			fmt.Println(responseObj.Matches[i].IPStr)
 		}
@@ -51,19 +55,25 @@ func request(url string) {
 	}
 }
 
-func shodan(domain string) {
-	shodanKey := os.Getenv("SHODAN")
+func shodan(domain string, api string) {
 	shodanQuery := []string{`ssl:`, "ssl.cert.subject.CN:"}
 	for _, q := range shodanQuery {
-		shodanApi := "https://api.shodan.io/shodan/host/search?key=" + shodanKey + "&query=" + q + domain
+		shodanApi := "https://api.shodan.io/shodan/host/search?key=" + api + "&query=" + q + domain
+		if silent != true {
+			fmt.Println("[-] Searching ...")
+		}
 		request(shodanApi)
 	}
 
 }
 
 func main() {
-	fmt.Println(banner)
-	fmt.Println("[-] Searching ...")
-	domain := os.Args[1]
-	shodan(domain)
+	flag.BoolVar(&silent, "s", false, "Silent Mode")
+	flag.StringVar(&domain, "d", "", "Domaion to check")
+	flag.StringVar(&apiKey, "k", "", "Shodan ApiKey")
+	flag.Parse()
+	if silent != true {
+		fmt.Println(banner)
+	}
+	shodan(domain, apiKey)
 }
