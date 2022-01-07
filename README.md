@@ -1,9 +1,13 @@
 # SSLBUM
 *search ip of targets in shodan with ssl method!*
 
-## Run
+## Install
+
 ```
 > go get github.com/phor3nsic/sslbum
+```
+## Run
+```
 > sslbum -d hackerone.com -k SHODANAPIKEY
 
 █▀ █▀ █░░ █▄▄ █░█ █▀▄▀█
